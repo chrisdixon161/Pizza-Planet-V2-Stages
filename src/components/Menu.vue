@@ -28,21 +28,26 @@
     <!-- shopping basket -->
     <div class="basket">
       <h3>~ Basket ~</h3>
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <button class="btn_green">&#8722;</button>
-              <span>2</span>
-              <button class="btn_green">&#43;</button>
-            </td>
-            <td>Pepperoni 9"</td>
-            <td>$6.95</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>Order total:</p>
-      <button class="btn_green">Place Order</button>
+      <div v-if="basket.length > 0">
+        <table>
+          <tbody v-for="(item, index) in basket" :key="index">
+            <tr>
+              <td>
+                <button class="btn_green">&#8722;</button>
+                <span>{{ item.quantity }}</span>
+                <button class="btn_green">&#43;</button>
+              </td>
+              <td>{{ item.name }} {{ item.size }}"</td>
+              <td>${{ item.price * item.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Order total:</p>
+        <button class="btn_green">Place Order</button>
+      </div>
+      <div v-else>
+        <p>{{ basketText }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -52,6 +57,7 @@ export default {
   data() {
     return {
       basket: [],
+      basketText: "Your basket is empty",
       getMenuItems: {
         1: {
           name: "Margherita",
@@ -111,7 +117,7 @@ export default {
       }
       this.basket.push({
         name: item.name,
-        price: item.price,
+        price: option.price,
         size: option.size,
         quantity: 1
       });
