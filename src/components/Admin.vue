@@ -1,6 +1,7 @@
 <template>
   <div class="admin_wrapper">
     <div class="current_user_wrapper"></div>
+    <NewPizza />
     <div class="menu_wrapper">
       <h3>Menu:</h3>
       <table>
@@ -51,8 +52,13 @@
 </template>
 
 <script>
+import NewPizza from "./NewPizza";
+
 export default {
-  name: "admin"
+  name: "admin",
+  components: {
+    NewPizza
+  }
 };
 </script>
 
