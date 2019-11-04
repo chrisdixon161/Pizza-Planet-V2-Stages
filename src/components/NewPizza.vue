@@ -32,11 +32,12 @@
       <input type="text" id="price2" v-model="newPizza.options[1].price" />
     </div>
     <button type="button" class="btn_green" @click="add">Add</button>
-    {{ this.newPizza }}
   </form>
 </template>
 
 <script>
+import { dbMenuRef } from "../firebase";
+
 export default {
   name: "addNewPizza",
   data() {
@@ -60,7 +61,7 @@ export default {
   },
   methods: {
     add() {
-      alert("method triggered");
+      dbMenuRef.add(this.newPizza);
     }
   }
 };
