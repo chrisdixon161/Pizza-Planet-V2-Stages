@@ -7,19 +7,31 @@
     <nav>
       <ul>
         <li>
-          <a href="/">home</a>
+          <router-link to="/">
+            <a>home</a>
+          </router-link>
+          <!-- <a href="/">home</a> -->
         </li>
         <span>~</span>
         <li>
-          <a href="/menu">menu</a>
+          <router-link to="/menu">
+            <a>menu</a>
+          </router-link>
+          <!-- <a href="/menu">menu</a> -->
         </li>
         <span>~</span>
         <li>
-          <a href="/contact">contact us</a>
+          <router-link to="/contact">
+            <a>contact us</a>
+          </router-link>
+          <!-- <a href="/contact">contact us</a> -->
         </li>
         <span>~</span>
         <li>
-          <a href="/about">about us</a>
+          <router-link to="/about">
+            <a>about us</a>
+          </router-link>
+          <!-- <a href="/about">about us</a> -->
         </li>
       </ul>
     </nav>
