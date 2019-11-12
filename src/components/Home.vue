@@ -4,14 +4,19 @@
       <h2>Welcome to Pizza Planet!</h2>
       <img src="../assets/images/roller.png" alt="roller" />
       <h3>Feeling hungry?</h3>
-      <button class="order_btn">Let's order!</button>
+      <button class="order_btn" @click="goToMenu">Let's order!</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  methods: {
+    goToMenu() {
+      this.$router.push({ name: "menuLink" });
+    }
+  }
 };
 </script>
 
