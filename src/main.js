@@ -33,18 +33,6 @@ const router = new VueRouter({
   mode: 'history'
 })
 
-// router.afterEach((to, from, next) => {
-//   if (to.path === '/menu') {
-//     next()
-//   } else {
-//     next(false)
-//   }
-// })
-
-router.afterEach(() => {
-  alert('after each')
-})
-
 new Vue({
   router,
   render: h => h(App),
