@@ -60,6 +60,7 @@
 import NewPizza from "./NewPizza";
 import Login from "./Login";
 import { store } from "../store/store";
+import { mapGetters } from "vuex";
 
 export default {
   name: "admin",
@@ -68,15 +69,7 @@ export default {
     Login
   },
   computed: {
-    getMenuItems() {
-      return this.$store.getters.getMenuItems;
-    },
-    numberOfOrders() {
-      return this.$store.getters.numberOfOrders;
-    },
-    currentUser() {
-      return this.$store.getters.currentUser;
-    }
+    ...mapGetters(["getMenuItems", "numberOfOrders", "currentUser"])
   },
   methods: {
     async signOut() {
