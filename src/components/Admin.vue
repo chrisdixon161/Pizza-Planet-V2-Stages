@@ -2,6 +2,7 @@
   <div class="admin_wrapper">
     <div class="current_user_wrapper">
       <span>Logged in as:</span>
+      {{ currentUser }}
       <button type="button" class="btn_red" @click.prevent="signOut">Sign out</button>
     </div>
     <NewPizza />
@@ -58,7 +59,7 @@
 <script>
 import NewPizza from "./NewPizza";
 import Login from "./Login";
-import { firebaseAuth } from "../firebase";
+import { store } from "../store/store";
 
 export default {
   name: "admin",
@@ -72,15 +73,14 @@ export default {
     },
     numberOfOrders() {
       return this.$store.getters.numberOfOrders;
+    },
+    currentUser() {
+      return this.$store.getters.currentUser;
     }
   },
   methods: {
     async signOut() {
-      try {
-        await firebaseAuth.signOut();
-      } catch (error) {
-        alert(`error signing out, ${error}`);
-      }
+      store.dispatch("signOut");
     }
   }
 };

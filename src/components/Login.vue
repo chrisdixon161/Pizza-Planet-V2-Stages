@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { firebaseAuth } from "../firebase";
+import { store } from "../store/store";
 
 export default {
   name: "login",
@@ -25,7 +25,13 @@ export default {
     };
   },
   methods: {
-    async signIn() {}
+    signIn() {
+      const user = {
+        email: this.email,
+        password: this.password
+      };
+      store.dispatch("signIn", user);
+    }
   }
 };
 </script>
