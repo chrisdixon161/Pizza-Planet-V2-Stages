@@ -36,18 +36,18 @@
             <th>Price</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-for="(order, index) in getOrders" :key="order.id">
           <tr class="order_number">
             <th colspan="4">
-              <strong>Order Number: 4</strong>
+              <strong>Order Number: {{ index +1 }}</strong>
               <button type="button" class="btn_red">&times;</button>
             </th>
           </tr>
-          <tr>
-            <td>Margherita</td>
-            <td>9"</td>
-            <td>2</td>
-            <td>$13</td>
+          <tr v-for="orderItem in order.pizzas" :key="orderItem.id">
+            <td>{{ orderItem.name }}</td>
+            <td>{{orderItem.price}}"</td>
+            <td>{{orderItem.quantity}}</td>
+            <td>{{ orderItem.price }}</td>
           </tr>
         </tbody>
       </table>
@@ -69,7 +69,12 @@ export default {
     Login
   },
   computed: {
-    ...mapGetters(["getMenuItems", "numberOfOrders", "currentUser"])
+    ...mapGetters([
+      "getMenuItems",
+      "numberOfOrders",
+      "currentUser",
+      "getOrders"
+    ])
   },
   methods: {
     async signOut() {
