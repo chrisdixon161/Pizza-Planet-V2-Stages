@@ -24,6 +24,15 @@ const actions = {
     catch (error) {
       alert(`Error creating new pizza, ${error}`)
     }
+  },
+  removeMenuItem: async (context, id) => {
+    try {
+      const item = await dbMenuRef.doc(id)
+      item.delete()
+    }
+    catch (error) {
+      alert(`Error removing menu item, ${error}`)
+    }
   }
 }
 
