@@ -1,58 +1,64 @@
 <template>
   <div class="admin_wrapper">
-    <div class="current_user_wrapper">
-      <span>Logged in as:</span>
-      {{ currentUser }}
-      <button type="button" class="btn_red" @click.prevent="signOut">Sign out</button>
-    </div>
-    <NewPizza />
-    <div class="menu_wrapper">
-      <h3>Menu:</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Remove from menu</th>
-          </tr>
-        </thead>
-        <tbody v-for="item in getMenuItems" :key="item.id">
-          <tr>
-            <td>{{ item.name }}</td>
-            <td>
-              <button type="button" class="btn_red" @click="removeMenuItem(item.id)">&times;</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="orders_wrapper">
-      <h3>Current orders ({{ numberOfOrders }}):</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Size</th>
-            <th>Quantity</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody v-for="(order, index) in getOrders" :key="order.id">
-          <tr class="order_number">
-            <th colspan="4">
-              <strong>Order Number: {{ index +1 }}</strong>
-              <button type="button" class="btn_red" @click="removeOrder(order.id)">&times;</button>
-            </th>
-          </tr>
-          <tr v-for="orderItem in order.pizzas" :key="orderItem.id">
-            <td>{{ orderItem.name }}</td>
-            <td>{{orderItem.price}}"</td>
-            <td>{{orderItem.quantity}}</td>
-            <td>{{ orderItem.price }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <Login />
+    <section v-if="currentUser !== null">
+      <div class="current_user_wrapper">
+        <span>Logged in as:</span>
+        {{ currentUser }}
+        <button
+          type="button"
+          class="btn_red"
+          @click.prevent="signOut"
+        >Sign out</button>
+      </div>
+      <NewPizza />
+      <div class="menu_wrapper">
+        <h3>Menu:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Remove from menu</th>
+            </tr>
+          </thead>
+          <tbody v-for="item in getMenuItems" :key="item.id">
+            <tr>
+              <td>{{ item.name }}</td>
+              <td>
+                <button type="button" class="btn_red" @click="removeMenuItem(item.id)">&times;</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="orders_wrapper">
+        <h3>Current orders ({{ numberOfOrders }}):</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Size</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody v-for="(order, index) in getOrders" :key="order.id">
+            <tr class="order_number">
+              <th colspan="4">
+                <strong>Order Number: {{ index +1 }}</strong>
+                <button type="button" class="btn_red" @click="removeOrder(order.id)">&times;</button>
+              </th>
+            </tr>
+            <tr v-for="orderItem in order.pizzas" :key="orderItem.id">
+              <td>{{ orderItem.name }}</td>
+              <td>{{orderItem.price}}"</td>
+              <td>{{orderItem.quantity}}</td>
+              <td>{{ orderItem.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <Login v-if="currentUser == null" />
   </div>
 </template>
 
